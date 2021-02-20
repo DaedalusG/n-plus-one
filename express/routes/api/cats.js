@@ -26,11 +26,9 @@ router.get('/owners', asyncHandler(async function (req, res, next) {
 router.get('/toys', asyncHandler(async function (req, res, next) {
   const cats = await Cat.findAll({ include: [{ all: true, nested: true }] });
   const result = []
-  // console.log(cats)
   for (cat of cats) {
     const toys = []
     for (toy of cat.Toys) {
-      // console.log(toy)
       const toyType = toy.ToyType;
       toys.push({
         name: toy.name,
