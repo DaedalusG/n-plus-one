@@ -15,7 +15,8 @@ router.get('/owners', asyncHandler(async function (req, res, next) {
   for (cat of cats) {
     result.push({
       name: cat.name,
-      owner: await cat.getOwner(),
+      // owner: await cat.getOwner(),
+      owner: cat.owner,
       breed: cat.breed,
       color: cat.color
     });
