@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 
-const { Cat, Toy } = require('../../db/models');
+const { Cat, Toy, Owner } = require('../../db/models');
 
 const router = express.Router();
 
@@ -10,7 +10,7 @@ router.get('/', asyncHandler(async function (req, res, next) {
   res.json({ cats });
 }));
 router.get('/owners', asyncHandler(async function (req, res, next) {
-  const cats = await Cat.findAll().include();
+  const cats = await Cat.findAll({ include: [Owner] });
   const result = []
   for (cat of cats) {
     result.push({
