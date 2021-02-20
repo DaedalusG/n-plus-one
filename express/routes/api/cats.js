@@ -30,7 +30,8 @@ router.get('/toys', asyncHandler(async function (req, res, next) {
   for (cat of cats) {
     const toys = []
     for (toy of cat.Toys) {
-      const toyType = await toy.getToyType();
+      // console.log(toy)
+      const toyType = toy.ToyType;
       toys.push({
         name: toy.name,
         type: toyType.name
