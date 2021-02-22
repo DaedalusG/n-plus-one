@@ -24,6 +24,7 @@ router.get('/owners', asyncHandler(async function (req, res, next) {
   res.json({ cats: result });
 }));
 router.get('/toys', asyncHandler(async function (req, res, next) {
+  // Too Permissive needs revision
   const cats = await Cat.findAll({ include: [{ all: true, nested: true }] });
   const result = []
   for (cat of cats) {
