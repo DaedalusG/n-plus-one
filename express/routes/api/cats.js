@@ -34,7 +34,7 @@ router.get('/toys', asyncHandler(async function (req, res, next) {
         include: [
           {
             model: ToyType,
-            as: "ToyTypes"
+            as: "ToyType"
           }
         ]
       }
