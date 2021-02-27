@@ -13,6 +13,10 @@ def cats():
 #     contains_eager(User.orders).
 #     contains_eager(Order.items))
 
+# membership = Membership.query.options(
+#     orm.joinedload('company'), orm.joinedload('member')
+# ).first()
+
 
 @cat_routes.route('/owners')
 def owners():
