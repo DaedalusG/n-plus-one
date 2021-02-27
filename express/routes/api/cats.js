@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 
-const { Cat, Toy, Owner } = require('../../db/models');
+const { Cat, Toy, Owner, ToyType } = require('../../db/models');
 
 const router = express.Router();
 
@@ -32,7 +32,6 @@ router.get('/toys', asyncHandler(async function (req, res, next) {
       as: "Toys",
       include: [{
         model: ToyType,
-        as: 'ToyTypes'
       }]
     }]
   });
@@ -40,7 +39,7 @@ router.get('/toys', asyncHandler(async function (req, res, next) {
   for (cat of cats) {
     const toys = []
     for (toy of cat.Toys) {
-      const toyType = toy.ToyTypes;
+      const toyType = toy.ToyType;
       toys.push({
         name: toy.name,
         type: toyType.name
