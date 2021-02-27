@@ -27,24 +27,20 @@ router.get('/toys', asyncHandler(async function (req, res, next) {
   // Too Permissive needs revision
   // officially cheating but i need those little boxes and I'm onboarding at sourcegraph
   const cats = await Cat.findAll({
-    include: [
-      {
-        model: Toy,
-        as: "Toys",
-        include: [
-          {
-            model: ToyType,
-            as: "ToyType"
-          }
-        ]
-      }
-    ]
+    include: [{
+      model: Toy,
+      as: "Toys",
+      include: [{
+        model: ToyType,
+        as: 'ToyTypes'
+      }]
+    }]
   });
   const result = []
   for (cat of cats) {
     const toys = []
     for (toy of cat.Toys) {
-      const toyType = toy.ToyType;
+      const toyType = toy.ToyTypes;
       toys.push({
         name: toy.name,
         type: toyType.name
