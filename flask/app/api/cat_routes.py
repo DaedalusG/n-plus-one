@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from app.models import Cat
+from app.models import Cat, Owner, Toy
 
 cat_routes = Blueprint('cats', __name__)
 
