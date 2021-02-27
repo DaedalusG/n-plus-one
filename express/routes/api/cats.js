@@ -15,7 +15,6 @@ router.get('/owners', asyncHandler(async function (req, res, next) {
   for (cat of cats) {
     result.push({
       name: cat.name,
-      // owner: await cat.getOwner(),
       owner: cat.owner,
       breed: cat.breed,
       color: cat.color
@@ -24,8 +23,6 @@ router.get('/owners', asyncHandler(async function (req, res, next) {
   res.json({ cats: result });
 }));
 router.get('/toys', asyncHandler(async function (req, res, next) {
-  // Too Permissive needs revision
-  // officially cheating but i need those little boxes and I'm onboarding at sourcegraph
   const cats = await Cat.findAll({
     include: [{
       model: Toy,
