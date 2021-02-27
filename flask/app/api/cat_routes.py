@@ -9,6 +9,10 @@ def cats():
     cats = Cat.query.all()
     return {"cats": [cat.to_dict() for cat in cats]}
 
+# query(User).options(
+#     contains_eager(User.orders).
+#     contains_eager(Order.items))
+
 
 @cat_routes.route('/owners')
 def owners():
