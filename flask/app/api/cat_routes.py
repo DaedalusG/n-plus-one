@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from app.models import Cat, Owner, Toy
+from app.models import db, Cat, Owner, Toy
 
 cat_routes = Blueprint('cats', __name__)
 
@@ -22,9 +22,7 @@ def cats():
 
 @cat_routes.route('/owners')
 def owners():
-    cats = Cat.query.options(
-        joinedload('owner')
-    ).all()
+    cats = Cat.query.all()
     return {"cats": [cat.to_dict(expand=['owner']) for cat in cats]}
 
 @cat_routes.route('/toys')
