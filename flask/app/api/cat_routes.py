@@ -29,6 +29,9 @@ def owners():
     return {"cats": [cat.to_dict(expand=['owner']) for cat in cats]}
 
 @cat_routes.route('/toys')
+# def toys():
+#     cats = Cat.query.all()
+#     return {"cats": [cat.to_dict(expand=['toys']) for cat in cats]}
 def toys():
-    cats = Cat.query.all()
+    cats = Cat.query.options(db.joinedload('toys')).all()
     return {"cats": [cat.to_dict(expand=['toys']) for cat in cats]}
