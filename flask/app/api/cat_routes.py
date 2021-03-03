@@ -21,6 +21,9 @@ def cats():
 
 
 @cat_routes.route('/owners')
+# def owners():
+#     cats = Cat.query.all()
+#     return {"cats": [cat.to_dict(expand=['owner']) for cat in cats]}
 def owners():
     cats = Cat.query.all()
     return {"cats": [cat.to_dict(expand=['owner']) for cat in cats]}
