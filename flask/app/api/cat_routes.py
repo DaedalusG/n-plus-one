@@ -17,10 +17,14 @@ def cats():
 #     orm.joinedload('company'), orm.joinedload('member')
 # ).first()
 
+# do I need to use session on this guy?
+
 
 @cat_routes.route('/owners')
 def owners():
-    cats = Cat.query.all()
+    cats = Cat.query.options(
+        joinedload('owner')
+    ).all()
     return {"cats": [cat.to_dict(expand=['owner']) for cat in cats]}
 
 @cat_routes.route('/toys')
