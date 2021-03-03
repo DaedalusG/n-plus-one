@@ -33,5 +33,5 @@ def owners():
 #     cats = Cat.query.all()
 #     return {"cats": [cat.to_dict(expand=['toys']) for cat in cats]}
 def toys():
-    cats = Cat.query.options(db.joinedload('toys')).all()
+    cats = Cat.query.options(db.joinedload('toys').joinedload('toy_type')).all()
     return {"cats": [cat.to_dict(expand=['toys']) for cat in cats]}
